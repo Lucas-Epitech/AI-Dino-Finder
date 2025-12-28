@@ -1,0 +1,21 @@
+# AI-Dino-Finder Dependencies
+# Python 3.11.14
+
+# Deep Learning Framework
+# PyTorch 2.5.1 - Stable version, CPU-only for learning phase
+# Can be upgraded to GPU later without code changes
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+
+# Image Processing
+Pillow==11.0.0
+
+# Numerical Computing
+numpy==1.26.4
+
+# Data Visualization
+matplotlib==3.9.2
+
+# Progress Bars (useful during training)
+tqdm==4.67.1
