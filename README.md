@@ -1,4 +1,4 @@
-# 🦖 Dinosaur Species Classification — Computer Vision Project
+# 🦖 AI Dinosaur Finder — Computer Vision Project
 
 ## 📌 Project Purpose
 
