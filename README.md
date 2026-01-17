@@ -15,7 +15,7 @@ This project is intentionally designed as a **learning-by-building system**, not
 
 ### Prerequisites
 
-- **Python 3.11** (stable version for PyTorch ecosystem)
+- **Python 3.11+** (compatible with Python 3.13)
 - pip for package management
 
 ### Setup Environment
@@ -23,7 +23,7 @@ This project is intentionally designed as a **learning-by-building system**, not
 1. **Verify Python version**:
 
    ```bash
-   python --version  # Should show Python 3.11.x
+   python --version  # Should show Python 3.11+ or 3.13+
    ```
 
 2. **Create virtual environment**:
@@ -42,10 +42,23 @@ This project is intentionally designed as a **learning-by-building system**, not
    venv\Scripts\activate
    ```
 
-4. **Install dependencies** (once `requirements.txt` is created):
+4. **Install the package in editable mode** (includes all dependencies):
 
    ```bash
-   pip install -r requirements.txt
+   pip install -e .
+   ```
+
+   This will install:
+   - PyTorch 2.9.1+ (CPU version)
+   - torchvision 0.24.1+
+   - Pillow 11.0.0
+   - numpy, matplotlib, tqdm
+
+5. **Verify installation**:
+
+   ```bash
+   python -c "import torch; print(f'PyTorch {torch.__version__}')"
+   python -c "import dino_finder; print('Dino Finder installed!')"
    ```
 
 ### Target Species
@@ -62,28 +75,37 @@ These species were chosen for their:
 - Popularity (more images available)
 - Morphological diversity (bipedal, quadrupedal, flying)
 
----
+### Getting the Dataset
 
-## 🎯 Objectives
+#### Option 1: Manual Download (Recommended for Learning)
 
-- Classify images into **3 dinosaur species** (T-Rex, Triceratops, Pteranodon)
-- Understand how visual features are learned by CNNs
-- Build a complete, reproducible ML pipeline
-- Make architectural and technological choices explicit and justifiable
-- Identify limitations, biases, and failure cases
+1. Create the directory structure if it doesn't exist:
+   ```bash
+   mkdir -p data/raw/{trex,triceratops,pteranodon}
+   ```
 
----
+2. Download images manually:
+   - Search Google Images for each species
+   - Download 10-50 images per species&
+   - Save them in the corresponding folders:
+     - `data/raw/trex/` → trex_001.jpg, trex_002.jpg, ...
+     - `data/raw/triceratops/` → triceratops_001.jpg, ...
+     - `data/raw/pteranodon/` → pteranodon_001.jpg, ...
 
-## 🧠 Motivation & Philosophy
+3. Verify your dataset:
+   ```bash
+   python test.py
+   ```
 
-Most machine learning projects focus on results while hiding complexity behind abstractions.
-This project takes the opposite approach:
+#### Option 2: Automated Download (Experimental)
 
-- Favor **interpretability over performance**
-- Favor **understanding over automation**
-- Favor **system thinking over tool usage**
+The project includes a download script, but it may be blocked by search engines:
 
-Every major decision (language, framework, architecture) is motivated by **clarity and control**, not convenience.
+```bash
+python scripts/download_images.py --num-images 50
+```
+
+**Note**: Web scraping can be unreliable. Manual download ensures better quality control.
 
 ---
 
@@ -133,16 +155,16 @@ Python acts as an expressive interface to these optimized components.
 
 ---
 
-### Deep Learning Framework: PyTorch 2.5.1
+### Deep Learning Framework: PyTorch 2.9.1+
 
 PyTorch is chosen for its **dynamic execution model** and transparency.
 
-**Version choice**: PyTorch 2.5.1 (CPU)
+**Version choice**: PyTorch 2.9.1+ (CPU by default, GPU compatible)
 
-- Stable release with extensive documentation and community support
+- Latest stable release with extensive documentation and community support
 - CPU-only for learning phase (can migrate to GPU later without code changes)
-- Mature enough to avoid bugs, recent enough to use modern features
-- No CUDA complexity during initial learning
+- Mature and production-ready with modern features
+- CUDA libraries included but optional for GPU acceleration
 
 Reasons for PyTorch:
 

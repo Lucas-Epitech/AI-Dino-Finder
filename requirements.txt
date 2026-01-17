@@ -2,11 +2,11 @@
 # Python 3.11.14
 
 # Deep Learning Framework
-# PyTorch 2.5.1 - Stable version, CPU-only for learning phase
+# PyTorch 2.9.1 - Latest stable version, CPU-only for learning phase
 # Can be upgraded to GPU later without code changes
-torch==2.5.1
-torchvision==0.20.1
-torchaudio==2.5.1
+torch>=2.5.0
+torchvision>=0.21.0
+torchaudio>=2.5.0
 
 # Image Processing
 Pillow==11.0.0
